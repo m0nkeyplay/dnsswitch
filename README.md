@@ -2,8 +2,8 @@
 
 Flip DNS server on OSX quickly.
 
-* Set the local pihole address
-* Set or keep outside dns address
+* Set the local DNS address
+* Set or keep outside DNS address
 * Make executable 
 * Copy to a place in your PATH
 
