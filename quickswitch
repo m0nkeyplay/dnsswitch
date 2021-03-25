@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#   Quickly switch local DNS 
+#   Fill in your local DNS or any DNS for that matter
+#   Save to your PATH and call it.
+
+public=9.9.9.9
+private=
+switchText="Switching DNS from"
+nowText="Now using"
+
+if [ `networksetup -getdnsservers Wi-Fi` = $private ]
+then
+echo "$switchText $private to $public"
+`networksetup -setdnsservers Wi-Fi $public`
+echo "$nowText `networksetup -getdnsservers Wi-Fi`"
+else
+echo "$switchText $public to $private"
+`networksetup -setdnsservers Wi-Fi $private`
+echo "$nowText `networksetup -getdnsservers Wi-Fi`"
+fi
