@@ -8,8 +8,14 @@ public=9.9.9.9
 private=
 switchText="Switching DNS from"
 nowText="Now using"
+dnsText="Current DNS Server is:"
+optionInfo="$1 is not a command. -w to check Which dns server is in use.  -c to Change DNS servers"
 
-if [ `networksetup -getdnsservers Wi-Fi` = $private ]
+while [ -n "$1" ]
+do
+case "$1" in
+-w) echo "$dnsText" `networksetup -getdnsservers Wi-Fi` ;;
+-c) if [ `networksetup -getdnsservers Wi-Fi` = $private ]
 then
 echo "$switchText $private to $public"
 `networksetup -setdnsservers Wi-Fi $public`
@@ -18,4 +24,8 @@ else
 echo "$switchText $public to $private"
 `networksetup -setdnsservers Wi-Fi $private`
 echo "$nowText `networksetup -getdnsservers Wi-Fi`"
-fi
+fi ;;
+*) echo "$optionInfo" ;;
+esac
+shift
+done
